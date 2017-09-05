@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Вызывает немедленный выход, если выходное состояние команды не нулевое
+set -e
+
 # RVM install
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 

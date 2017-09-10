@@ -23,6 +23,11 @@ resource "google_compute_instance" "app" {
         network = "default"
         access_config {}
     }
+
+    provisioner "file" {
+        source = "files/puma.service"
+        destination = "tmp/puma.service"
+    }
 }
 
 resource "google_compute_firewall" "firewall_puma" {

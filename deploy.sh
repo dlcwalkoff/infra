@@ -1,13 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
+set -e
 
-# Clone app
+source ~/.profile
 git clone https://github.com/Artemmkin/reddit.git
-
-# Install deps
 cd reddit && bundle install
 
-# Start DB
-sudo systemctl start mongod
-
-# Start app
-puma -d
+sudo mv /tmp/puma.service /etc/systemd/system/puma.service
+sudo systemctl start puma
+sudo systemctl enable puma

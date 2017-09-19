@@ -4,5 +4,5 @@ variable public_key_path {
 
 variable app_disk_image {
   description = "Disk image for reddit app"
-  default = "reddit-base-app"
+  default     = "reddit-base-app"
 }

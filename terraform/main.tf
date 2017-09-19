@@ -1,6 +1,6 @@
 provider "google" {
-    project = "my-otus"
-    region = "europe-west1"
+    project = "${var.project}"
+    region = "${var.region}"
 }
 
 resource "google_compute_instance" "app" {
@@ -10,12 +10,12 @@ resource "google_compute_instance" "app" {
     tags = ["reddit-app"]
 
     metadata {
-        sshKeys = "appuser:${file("~/.ssh/appuser.pub")}"
+        sshKeys = "appuser:${file(var.public_key_path)}"
     }
 
     boot_disk {
         initialize_params {
-            image = "reddit-base-1505035847"
+            image = "${var.disk_image}"
         }
     }
 

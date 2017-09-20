@@ -1,3 +1,11 @@
+terraform {
+  backend "gcs" {
+    bucket  = "my-otus"
+    path    = "terraform/states/prod/terraform.tfstate"
+    project = "my-otus"
+  }
+}
+
 provider "google" {
   project = "${var.project}"
   region  = "${var.region}"

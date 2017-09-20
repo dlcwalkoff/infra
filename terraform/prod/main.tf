@@ -16,6 +16,6 @@ module "db" {
 }
 
 module "vpc" {
-  source = "../modules/vpc"
+  source            = "../modules/vpc"
   ssh_source_ranges = ["192.168.0.100"]
 }

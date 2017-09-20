@@ -8,8 +8,8 @@ resource "google_compute_firewall" "firewall_mongo" {
   }
 
   source_ranges = "${var.mongo_source_ranges}"
-  target_tags   = ["reddit-db"]
-  source_tags   = ["reddit-app"]
+  target_tags   = "${var.mongo_target_tags}"
+  source_tags   = "${var.mongo_source_tags}"
 }
 
 resource "google_compute_firewall" "firewall_puma" {
@@ -22,7 +22,7 @@ resource "google_compute_firewall" "firewall_puma" {
   }
 
   source_ranges = "${var.puma_source_ranges}"
-  target_tags   = ["reddit-app"]
+  target_tags   = "${var.puma_target_tags}"
 }
 
 resource "google_compute_firewall" "firewall_ssh" {
@@ -31,7 +31,7 @@ resource "google_compute_firewall" "firewall_ssh" {
 
   allow {
     protocol = "tcp"
-    ports    = ["22"]
+    ports    = "${var.ssh_allow_ports}"
   }
 
   source_ranges = "${var.ssh_source_ranges}"

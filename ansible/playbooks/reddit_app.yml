@@ -35,6 +35,20 @@
       tags: app-tag
       systemd: name=puma enabled=true
 
+    - name: Fetch the latest version of application code
+      tags: deploy-tag
+      notify: restart puma
+      git:
+        repo: 'https://github.com/Artemmkin/reddit.git'
+        dest: /home/appuser/reddit
+        version: monolith
+
+    - name: Bundle install
+      tags: deploy-tag
+      bundler:
+        state: present
+        chdir: /home/appuser/reddit
+
   handlers:
     - name: restart mongod
       become: true
@@ -43,3 +57,7 @@
     - name: reload puma
       become: true
       service: name=puma state=reloaded
+
+    - name: restart puma
+      become: true
+      service: name=puma state=restarted

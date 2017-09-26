@@ -4,6 +4,7 @@
 
   vars:
     mongo_bind_ip: 0.0.0.0
+    db_host: 10.132.0.2
 
   tasks:
     - name: Change MongoDB config file
@@ -14,6 +15,12 @@
         src: ../templates/mongod.conf.j2
         dest: /etc/mongod.conf
         mode: 0644
+
+    - name: Add config for MongoDB connection
+      tags: app-tag
+      template:
+        src: ../templates/db_config.j2
+        dest: /home/appuser/db_config
 
     - name: Add unit file for Puma
       become: true
@@ -26,7 +33,7 @@
     - name: Enable Puma
       become: true
       tags: app-tag
-      systemd: name=pume enabled=true
+      systemd: name=puma enabled=true
 
   handlers:
     - name: restart mongod

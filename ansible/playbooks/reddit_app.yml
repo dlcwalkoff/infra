@@ -6,6 +6,6 @@
       become: true
       tags: db-tag
       template:
-        src: templates/mongod.conf.j2
+        src: ../templates/mongod.conf.j2
         dest: /etc/mongod.conf
         mode: 0644

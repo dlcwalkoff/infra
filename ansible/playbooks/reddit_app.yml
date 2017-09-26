@@ -7,7 +7,12 @@
     - name: Change MongoDB config file
       become: true
       tags: db-tag
+      notify: restart mongod
       template:
         src: ../templates/mongod.conf.j2
         dest: /etc/mongod.conf
         mode: 0644
+  handlers:
+    - name: restart mongod
+      become: true
+      service: name=mongod state=restarted

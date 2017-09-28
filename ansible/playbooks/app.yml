@@ -3,25 +3,7 @@
   become: true
 
   vars:
-    db_host: 10.132.0.2
+    db_host: 10.132.0.3
 
-  tasks:
-    - name: Add config for MongoDB connection
-      template:
-        owner: appuser
-        group: appuser
-        src: ../templates/db_config.j2
-        dest: /home/appuser/db_config
-
-    - name: Add unit file for Puma
-      notify: reload puma
-      copy:
-        src: ../files/puma.service
-        dest: /etc/systemd/system/puma.service
-
-    - name: Enable Puma
-      systemd: name=puma enabled=true
-
-  handlers:
-    - name: reload puma
-      service: name=puma state=reloaded
+  roles:
+    - ../roles/app

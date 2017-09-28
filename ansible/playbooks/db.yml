@@ -6,14 +6,5 @@
   vars:
     mongo_bind_ip: 0.0.0.0
 
-  tasks:
-    - name: Change MongoDB config file
-      notify: restart mongod
-      template:
-        src: ../templates/mongod.conf.j2
-        dest: /etc/mongod.conf
-        mode: 0644
-
-  handlers:
-    - name: restart mongod
-      service: name=mongod state=restarted
+  roles:
+    - ../roles/db

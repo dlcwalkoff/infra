@@ -19,14 +19,13 @@
     - name: restart mongod
       service: name=mongod state=restarted
 
----
 - name: Configure application
   hosts: app
   tags: app
   become: true
 
   vars:
-    db_host: 10.132.0.2
+    db_host: 10.132.0.3
 
   tasks:
     - name: Add config for MongoDB connection

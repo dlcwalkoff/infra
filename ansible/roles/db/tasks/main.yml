@@ -1,2 +1,8 @@
 ---
 # tasks file for db
+- name: Change MongoDB config file
+  notify: restart mongod
+  template:
+    src: mongod.conf.j2
+    dest: /etc/mongod.conf
+    mode: 0644

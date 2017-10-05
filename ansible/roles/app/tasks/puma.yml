@@ -2,16 +2,16 @@
 - name: Add unit file for Puma
   tags: puma
   notify: reload puma
-  copy:
-    src: puma.service
+  template:
+    src: puma.service.j2
     dest: /etc/systemd/system/puma.service
 
 - name: Add config for MongoDB connection
   template:
-    owner: appuser
-    group: appuser
+    owner: "{{ deploy_user }}"
+    group: "{{ deploy_user }}"
     src: db_config.j2
-    dest: /home/appuser/db_config
+    dest: "/home/{{ deploy_user }}/db_config"
 
 - name: Enable Puma
   tags: puma

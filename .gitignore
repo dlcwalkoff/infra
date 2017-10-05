@@ -14,6 +14,11 @@
 
 # Test
 .cache
+*__*
+
+# Python
+*.pyc
+*.pyo
 
 # Vagrant
 .vagrant/

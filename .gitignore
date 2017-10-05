@@ -1,5 +1,6 @@
 # IDE
 .idea
+.vscode
 
 # Terraform
 *.tfstate
@@ -11,9 +12,12 @@
 # Ansible
 *.retry
 
+# Test
+.cache
+
 # Vagrant
 .vagrant/
-*.logs
+*.log
 
 # Python
 .python_env/
